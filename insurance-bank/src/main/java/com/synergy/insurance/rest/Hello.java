@@ -11,7 +11,7 @@ public class Hello {
 	@ResponseBody
 	@RequestMapping(method=RequestMethod.GET)
 	public String sayHello() {
-		System.out.println("lala");
+		System.out.println("first commit");
 		return "hello";
 	}
 }
