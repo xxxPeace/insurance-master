@@ -1,4 +1,4 @@
-package com.synergy.insurance.rest;
+package com.synergy.insurance.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +12,6 @@ public class Hello {
 	@RequestMapping(method=RequestMethod.GET)
 	public String sayHello() {
 		System.out.println("first commit");
-		return "hello";
+		return "hellolala";
 	}
 }
