@@ -9,11 +9,14 @@
 	xmlns:security="http://www.springframework.org/schema/security"
 	xsi:schemaLocation = 
 		"http://www.springframework.org/schema/beans
-		http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
+		http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/tx 
+        http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 
 
 	<bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
-		<property name="dataSource" ref="insuranceDatasource"/>
+		<property name="dataSource" ref="insuranceDatasource"></property>
+		
 		<property name="hibernateProperties">
 			<props>
 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
@@ -22,10 +25,16 @@
 			</props>
 		</property>
 		<property name="packagesToScan" value="com.synergy.insurance.*"/>
+		
 	</bean>
 	
 	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate5.HibernateTemplate">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 		<property name="checkWriteOperations" value="false"></property>
 	</bean>
+	
+	<bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+       <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+	<tx:annotation-driven/>
 </beans>
