@@ -22,20 +22,7 @@ public class LoginDao {
 		anth.setAnthority("ROLE_MANAGER");
 		hibernateTemplate.save(anth);
 	}
-	public void createCustomer(LoginEntity longinEntity){
-		hibernateTemplate.save(longinEntity);
-		AnthoritiesEntity anth = new AnthoritiesEntity();
-		anth.setUser(longinEntity);
-		anth.setAnthority("ROLE_CUSTOMER");
-		hibernateTemplate.save(anth);
-		CustomerEntity customer = new CustomerEntity();
-		customer.setAddress("2213 ndsada ojfdsa way");
-		customer.setAge(21);
-		customer.setOccqupation("occqupation");
-		customer.setSalary(21.22);
-		customer.setUser(longinEntity);
-		hibernateTemplate.save(customer);
-	}
+	
 	
 	public void createThirdPraty(LoginEntity longinEntity){
 		hibernateTemplate.save(longinEntity);
@@ -53,6 +40,17 @@ public class LoginDao {
 	public AnthoritiesEntity getAnthByEmail(String email){
 		AnthoritiesEntity anth = hibernateTemplate.get(AnthoritiesEntity.class, email);
 		return anth;
+	}
+	
+	
+	public void createCustomer(LoginEntity longinEntity, CustomerEntity customer){
+		hibernateTemplate.save(longinEntity);
+		AnthoritiesEntity anth = new AnthoritiesEntity();
+		anth.setUser(longinEntity);
+		anth.setAnthority("ROLE_CUSTOMER");
+		customer.setUser(longinEntity);
+		hibernateTemplate.save(anth);
+		hibernateTemplate.save(customer);
 	}
 	
 	public CustomerEntity getCustomerByEmail(String email){
