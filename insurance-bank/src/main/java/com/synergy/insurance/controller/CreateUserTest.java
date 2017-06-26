@@ -4,14 +4,12 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.synergy.insurance.dao.LoginDao;
-import com.synergy.insurance.model.AnthoritiesEntity;
 import com.synergy.insurance.model.CustomerEntity;
 import com.synergy.insurance.model.LoginEntity;
 
@@ -42,9 +40,14 @@ public class CreateUserTest {
 		user1.setEmail("rtandsadsa2@qq.com");
 		user1.setPassword("123");
 		user1.setEnabled(true);
-		
+		CustomerEntity customer = new CustomerEntity();
+		customer.setAddress("2213 ndsada ojfdsa way");
+		customer.setAge(21);
+		customer.setOccqupation("occqupation");
+		customer.setSalary(21.22);
+		//customer.setUser(user1);
 		//loginDao.createManager(user1);
-		loginDao.createCustomer(user1);
+		loginDao.createCustomer(user1, customer);
 		//loginDao.createThirdPraty(user1);
 		return user1;
 	}
