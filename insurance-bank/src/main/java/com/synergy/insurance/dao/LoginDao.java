@@ -49,6 +49,7 @@ public class LoginDao {
 		anth.setUser(longinEntity);
 		anth.setAnthority("ROLE_CUSTOMER");
 		customer.setUser(longinEntity);
+		customer.setUser(longinEntity);
 		hibernateTemplate.save(anth);
 		hibernateTemplate.save(customer);
 	}

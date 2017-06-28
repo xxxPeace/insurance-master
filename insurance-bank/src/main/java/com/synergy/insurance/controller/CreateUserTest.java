@@ -42,8 +42,6 @@ public class CreateUserTest {
 		user1.setEnabled(true);
 		CustomerEntity customer = new CustomerEntity();
 		customer.setAddress("2213 ndsada ojfdsa way");
-		customer.setAge(21);
-		customer.setOccqupation("occqupation");
 		customer.setSalary(21.22);
 		//customer.setUser(user1);
 		//loginDao.createManager(user1);

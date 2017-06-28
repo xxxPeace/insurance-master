@@ -1,24 +1,11 @@
 package com.synergy.insurance.model;
 
-import java.io.Serializable;
 import java.sql.Date;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-
-@Entity
-@Table(name="Customer")
-public class CustomerEntity implements Serializable{
-	@Id
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "username", referencedColumnName="username")
-	private LoginEntity user;
-	
+public class CustomerJson {
 	private String name;
+	private String email;
+	private String password;
 	private String mobile;
 	private String address;
 	private int ssn;
@@ -33,11 +20,17 @@ public class CustomerEntity implements Serializable{
 	public void setName(String name) {
 		this.name = name;
 	}
-	public LoginEntity getUser() {
-		return user;
+	public String getEmail() {
+		return email;
 	}
-	public void setUser(LoginEntity user) {
-		this.user = user;
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	public String getMobile() {
 		return mobile;
@@ -81,6 +74,4 @@ public class CustomerEntity implements Serializable{
 	public void setEducation(String education) {
 		this.education = education;
 	}
-	
-	
 }
