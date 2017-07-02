@@ -3,3 +3,5 @@ InsuranceBank.iml
 target
 insurance-bank.iml
 library
+pom.properties
+MANIFEST.MF
