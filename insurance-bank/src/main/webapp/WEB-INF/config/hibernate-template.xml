@@ -24,7 +24,7 @@
 				<prop key="hibernate.hbm2ddl.auto">update</prop>
 			</props>
 		</property>
-		<property name="packagesToScan" value="com.synergy.insurance.*"/>
+		<property name="packagesToScan" value="com.synergy.*"/>
 		
 	</bean>
 	
