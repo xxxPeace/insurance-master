@@ -1,0 +1,68 @@
+package com.synergy.insurance.eric.model;
+
+import java.sql.Timestamp;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
+public class Customer {
+	@Id
+	private String email;
+	private String address;
+	private String occupation;
+	private String education;
+	private Timestamp dob;
+	private double salary;
+	private int mobile;
+	private int ssn;
+
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	public String getOccupation() {
+		return occupation;
+	}
+	public void setOccupation(String occupation) {
+		this.occupation = occupation;
+	}
+	public String getEducation() {
+		return education;
+	}
+	public void setEducation(String education) {
+		this.education = education;
+	}
+	public Timestamp getDob() {
+		return dob;
+	}
+	public void setDob(Timestamp dob) {
+		this.dob = dob;
+	}
+	public double getSalary() {
+		return salary;
+	}
+	public void setSalary(double salary) {
+		this.salary = salary;
+	}
+	public int getMobile() {
+		return mobile;
+	}
+	public void setMobile(int mobile) {
+		this.mobile = mobile;
+	}
+	public int getSsn() {
+		return ssn;
+	}
+	public void setSsn(int ssn) {
+		this.ssn = ssn;
+	}
+}
