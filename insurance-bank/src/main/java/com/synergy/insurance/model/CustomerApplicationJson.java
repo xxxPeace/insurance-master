@@ -2,7 +2,7 @@ package com.synergy.insurance.model;
 
 import java.sql.Date;
 
-public class CustomerJson {
+public class CustomerApplicationJson {
 	private String name;
 	private String email;
 	private String password;

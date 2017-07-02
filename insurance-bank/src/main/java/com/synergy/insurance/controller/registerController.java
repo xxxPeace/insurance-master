@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.synergy.insurance.dao.LoginDao;
 import com.synergy.insurance.model.CustomerEntity;
-import com.synergy.insurance.model.CustomerJson;
+import com.synergy.insurance.model.CustomerApplicationJson;
 import com.synergy.insurance.model.LoginEntity;
 
 @Controller
@@ -24,7 +24,7 @@ public class registerController {
 	
 	@Transactional
 	@RequestMapping(value = "createCustomer",method=RequestMethod.POST)
-	@ResponseBody public LoginEntity createCustomer(@RequestBody CustomerJson customer) {
+	@ResponseBody public LoginEntity createCustomer(@RequestBody CustomerApplicationJson customer) {
 		System.out.println("createCustomer");
 		
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
