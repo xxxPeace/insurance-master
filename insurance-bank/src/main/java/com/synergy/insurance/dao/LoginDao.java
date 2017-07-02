@@ -6,6 +6,7 @@ import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Service;
 
 import com.synergy.insurance.model.AnthoritiesEntity;
+import com.synergy.insurance.model.CustomerApplicationEntity;
 import com.synergy.insurance.model.CustomerEntity;
 import com.synergy.insurance.model.LoginEntity;
 
@@ -54,6 +55,16 @@ public class LoginDao {
 		hibernateTemplate.save(customer);
 	}
 	
+	public void createCustomerAplication(LoginEntity longinEntity, CustomerApplicationEntity cusapp){
+		hibernateTemplate.save(longinEntity);
+		AnthoritiesEntity anth = new AnthoritiesEntity();
+		anth.setUser(longinEntity);
+		anth.setAnthority("ROLE_CUSTOMER");
+		cusapp.setUser(longinEntity);
+		cusapp.setUser(longinEntity);
+		hibernateTemplate.save(anth);
+		hibernateTemplate.save(cusapp);
+	}
 	public CustomerEntity getCustomerByEmail(String email){
 		CustomerEntity customer = hibernateTemplate.get(CustomerEntity.class, email);
 		return customer;
