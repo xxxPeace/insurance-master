@@ -7,17 +7,19 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="applications")
 public class Application {
 	@Id
 	@GeneratedValue
 	private int applicationId;
 	private String name;
 	private String email;
-	private int mobile;
+	private String mobile;
 	private String address;
-	private int ssn;
+	private String ssn;
 	private Timestamp dob;
 	private String occupation;
 	private double salary;
@@ -49,10 +51,10 @@ public class Application {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public int getMobile() {
+	public String getMobile() {
 		return mobile;
 	}
-	public void setMobile(int mobile) {
+	public void setMobile(String mobile) {
 		this.mobile = mobile;
 	}
 	public String getAddress() {
@@ -61,10 +63,10 @@ public class Application {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public int getSsn() {
+	public String getSsn() {
 		return ssn;
 	}
-	public void setSsn(int ssn) {
+	public void setSsn(String ssn) {
 		this.ssn = ssn;
 	}
 	public Timestamp getDob() {
@@ -127,4 +129,16 @@ public class Application {
 	public void setPolicy(String policy) {
 		this.policy = policy;
 	}
+	
+	@Override
+	public String toString() {
+		return "Application [applicationId=" + applicationId + ", name=" + name + ", email=" + email + ", mobile="
+				+ mobile + ", address=" + address + ", ssn=" + ssn + ", dob=" + dob + ", occupation=" + occupation
+				+ ", salary=" + salary + ", education=" + education + ", assignedEmployee=" + assignedEmployee
+				+ ", dateApplied=" + dateApplied + ", dateAssigned=" + dateAssigned + ", fieldsFilledIn="
+				+ fieldsFilledIn + ", status=" + status + ", policy=" + policy + "]";
+	}
+	
+	
+	
 }

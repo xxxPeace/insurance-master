@@ -1,18 +1,24 @@
 package com.synergy.insurance.controller;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.synergy.insurance.dao.ApplicationDao;
 import com.synergy.insurance.dao.LoginDao;
 import com.synergy.insurance.dao.PasswordBuilder;
+import com.synergy.insurance.model.Application;
 import com.synergy.insurance.model.CustomerApplicationEntity;
 import com.synergy.insurance.model.CustomerApplicationJson;
 import com.synergy.insurance.model.LoginEntity;
@@ -23,12 +29,45 @@ public class CustomerApplicationController {
 	@Qualifier("loginDao")
 	LoginDao loginDao;
 	
+	@Autowired
+	@Qualifier("applicationDao")
+	ApplicationDao applicationDao;
+	
 	/*@Autowired
 	@Qualifier("passwordBuilder")
 	PasswordBuilder passwordBuilder;*/
 	
+	
 	@Transactional
 	@RequestMapping(value = "createApplication",method=RequestMethod.POST)
+	@ResponseBody public void createApplication(@RequestBody Application app) {
+		System.out.println("createApplication");
+		applicationDao.createApplication(app);	
+	}
+	@RequestMapping(value = "application",method=RequestMethod.GET)
+	@ResponseBody public List<Application> getApplications() {
+		System.out.println("application");
+		return applicationDao.getApplications();	
+	}
+	@RequestMapping(value = "application",method=RequestMethod.POST)
+	@ResponseBody public List<Application> updateApplications(@RequestBody Application app) {
+		System.out.println("application");
+		Application application = applicationDao.getApplicationByID(app.getApplicationId());
+		application.setApplicationId(1);
+		System.out.println(application);
+		//applicationDao.createApplication(application);	
+		return applicationDao.getApplications();	
+	}
+	
+	//uri :http://localhost:8081/insurance-bank/webapi/application/status?status=pending
+	@RequestMapping(value = "application/status",method=RequestMethod.GET)
+	@ResponseBody public List<Application> getApplicationByStatus(@RequestParam("status") String status) {
+		System.out.println("getApplicationByStatus");	
+		return applicationDao.getApplicationByStatus(status);
+	}
+	
+	@Transactional
+	@RequestMapping(value = "createApplicationOld",method=RequestMethod.POST)
 	@ResponseBody public LoginEntity createCustomer(@RequestBody CustomerApplicationJson cusApp) {
 		System.out.println("createCustomer");
 		String password = PasswordBuilder.passwordBuilder();
@@ -66,4 +105,6 @@ public class CustomerApplicationController {
 		//loginDao.createThirdPraty(user1);
 		return user;
 	}
+	
+	
 }
