@@ -42,4 +42,10 @@ public class ApplicationDao {
 		return listApplications;
 	}
 	
+	public void updateApplicationStatus(int id, String status){
+		Application application = getApplicationByID(id);
+		application.setStatus(status);
+		hibernateTemplate.saveOrUpdate(application);
+		
+	}
 }

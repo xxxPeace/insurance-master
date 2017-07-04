@@ -60,10 +60,18 @@ public class CustomerApplicationController {
 	}
 	
 	//uri :http://localhost:8081/insurance-bank/webapi/application/status?status=pending
-	@RequestMapping(value = "application/status",method=RequestMethod.GET)
+	@RequestMapping(value = "application/status",method=RequestMethod.POST)
 	@ResponseBody public List<Application> getApplicationByStatus(@RequestParam("status") String status) {
 		System.out.println("getApplicationByStatus");	
 		return applicationDao.getApplicationByStatus(status);
+	}
+	
+	//localhost:8081/insurance-bank/webapi/application/status?id=4&status=pending
+	@Transactional
+	@RequestMapping(value = "application/status",method=RequestMethod.PUT)
+	@ResponseBody public void updateApplicationStatus(@RequestParam("id") int id, @RequestParam("status") String status) {
+		System.out.println("updateApplicationStatus");	
+		applicationDao.updateApplicationStatus(id, status);
 	}
 	
 	@Transactional
