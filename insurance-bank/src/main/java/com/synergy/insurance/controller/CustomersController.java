@@ -1,5 +1,7 @@
 package com.synergy.insurance.controller;
 
+import java.util.List;
+
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
@@ -42,5 +44,11 @@ public class CustomersController {
 	@RequestMapping(method=RequestMethod.POST)
 	public void addCustomer(@RequestBody Customer customer) {
 		customerDao.addCustomer(customer);
+	}
+	
+	@ResponseBody
+	@RequestMapping(method=RequestMethod.GET)
+	public List<Customer> getCustomers() {
+		return customerDao.getCustomers();
 	}
 }
