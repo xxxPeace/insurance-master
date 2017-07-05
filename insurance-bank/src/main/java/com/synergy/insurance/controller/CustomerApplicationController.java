@@ -65,6 +65,12 @@ public class CustomerApplicationController {
 		System.out.println("getApplicationByStatus");	
 		return applicationDao.getApplicationByStatus(status);
 	}
+	//uri :http://localhost:8081/insurance-bank/webapi/application/status?email=peace@gmail.com
+	@RequestMapping(value = "application/email",method=RequestMethod.GET)
+	@ResponseBody public List<Application> getApplicationByEmail(@RequestParam("email") String email) {
+		System.out.println("getApplicationByStatus");	
+		return applicationDao.getApplicationByEmail(email);
+	}
 	
 	//localhost:8081/insurance-bank/webapi/application/status?id=4&status=pending
 	@Transactional
