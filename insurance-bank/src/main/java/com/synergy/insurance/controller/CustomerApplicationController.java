@@ -60,7 +60,7 @@ public class CustomerApplicationController {
 	}
 	
 	//uri :http://localhost:8081/insurance-bank/webapi/application/status?status=pending
-	@RequestMapping(value = "application/status",method=RequestMethod.POST)
+	@RequestMapping(value = "application/status",method=RequestMethod.GET)
 	@ResponseBody public List<Application> getApplicationByStatus(@RequestParam("status") String status) {
 		System.out.println("getApplicationByStatus");	
 		return applicationDao.getApplicationByStatus(status);
