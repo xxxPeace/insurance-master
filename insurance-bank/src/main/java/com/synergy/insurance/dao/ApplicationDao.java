@@ -42,6 +42,11 @@ public class ApplicationDao {
 		return listApplications;
 	}
 	
+	public List<Application> getApplicationByEmail(String email){
+		List<Application> listApplications = (List<Application>) hibernateTemplate.find("from Application where email = ?",email);
+		return listApplications;
+	}
+	
 	public void updateApplicationStatus(int id, String status){
 		Application application = getApplicationByID(id);
 		application.setStatus(status);
