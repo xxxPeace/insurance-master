@@ -18,6 +18,7 @@ public class Customer {
 	private int ssn;
 	private String name;
 
+	//test
 	public String getName() {
 		return name;
 	}
