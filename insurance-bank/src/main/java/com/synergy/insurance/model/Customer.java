@@ -14,8 +14,8 @@ public class Customer {
 	private String education;
 	private Timestamp dob;
 	private double salary;
-	private int mobile;
-	private int ssn;
+	private String mobile;
+	private String ssn;
 	private String name;
 
 	//test
@@ -61,16 +61,17 @@ public class Customer {
 	public void setSalary(double salary) {
 		this.salary = salary;
 	}
-	public int getMobile() {
+	public String getMobile() {
 		return mobile;
 	}
-	public void setMobile(int mobile) {
+	public void setMobile(String mobile) {
 		this.mobile = mobile;
 	}
-	public int getSsn() {
+	public String getSsn() {
 		return ssn;
 	}
-	public void setSsn(int ssn) {
+	public void setSsn(String ssn) {
 		this.ssn = ssn;
 	}
+	
 }
