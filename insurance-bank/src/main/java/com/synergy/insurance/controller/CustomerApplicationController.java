@@ -16,18 +16,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.synergy.insurance.dao.ApplicationDao;
-import com.synergy.insurance.dao.LoginDao;
+
 import com.synergy.insurance.dao.PasswordBuilder;
 import com.synergy.insurance.model.Application;
-import com.synergy.insurance.model.CustomerApplicationEntity;
-import com.synergy.insurance.model.CustomerApplicationJson;
-import com.synergy.insurance.model.LoginEntity;
+
 
 @Controller
 public class CustomerApplicationController {
-	@Autowired
-	@Qualifier("loginDao")
-	LoginDao loginDao;
+	
 	
 	@Autowired
 	@Qualifier("applicationDao")
@@ -60,10 +56,16 @@ public class CustomerApplicationController {
 	}
 	
 	//uri :http://localhost:8081/insurance-bank/webapi/application/status?status=pending
-	@RequestMapping(value = "application/status",method=RequestMethod.POST)
+	@RequestMapping(value = "application/status",method=RequestMethod.GET)
 	@ResponseBody public List<Application> getApplicationByStatus(@RequestParam("status") String status) {
 		System.out.println("getApplicationByStatus");	
 		return applicationDao.getApplicationByStatus(status);
+	}
+	//uri :http://localhost:8081/insurance-bank/webapi/application/status?email=peace@gmail.com
+	@RequestMapping(value = "application/email",method=RequestMethod.GET)
+	@ResponseBody public List<Application> getApplicationByEmail(@RequestParam("email") String email) {
+		System.out.println("getApplicationByStatus");	
+		return applicationDao.getApplicationByEmail(email);
 	}
 	
 	//localhost:8081/insurance-bank/webapi/application/status?id=4&status=pending
@@ -74,7 +76,7 @@ public class CustomerApplicationController {
 		applicationDao.updateApplicationStatus(id, status);
 	}
 	
-	@Transactional
+	/*@Transactional
 	@RequestMapping(value = "createApplicationOld",method=RequestMethod.POST)
 	@ResponseBody public LoginEntity createCustomer(@RequestBody CustomerApplicationJson cusApp) {
 		System.out.println("createCustomer");
@@ -87,7 +89,7 @@ public class CustomerApplicationController {
 		user.setPassword(encoderPassword);
 		user.setEnabled(true);
 		
-		/*CustomerEntity customerEntity = new CustomerEntity();
+		CustomerEntity customerEntity = new CustomerEntity();
 		customerEntity.setName(cusApp.getName());
 		customerEntity.setMobile(cusApp.getMobile());
 		customerEntity.setAddress(cusApp.getAddress());
@@ -95,7 +97,7 @@ public class CustomerApplicationController {
 		customerEntity.setDob(cusApp.getDob());
 		customerEntity.setOccupation(cusApp.getOccupation());
 		customerEntity.setSalary(cusApp.getSalary());
-		customerEntity.setEducation(cusApp.getEducation());*/
+		customerEntity.setEducation(cusApp.getEducation());
 		
 		CustomerApplicationEntity customerApplicationEntity = new CustomerApplicationEntity();
 		customerApplicationEntity.setName(cusApp.getName());
@@ -112,7 +114,7 @@ public class CustomerApplicationController {
 		loginDao.createCustomerAplication(user, customerApplicationEntity);
 		//loginDao.createThirdPraty(user1);
 		return user;
-	}
+	}*/
 	
 	
 }
