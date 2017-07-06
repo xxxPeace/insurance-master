@@ -1,5 +1,7 @@
 package com.synergy.insurance.dao;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Service;
@@ -23,5 +25,10 @@ public class UsersDao {
 		}
 		
 		return row;
+	}
+	
+	public List<Users> getThirdPartyUsers() {
+		String query = "from Users where role=?";
+		return (List<Users>) hibernateTemplate.find(query,"third party employee");
 	}
 }
