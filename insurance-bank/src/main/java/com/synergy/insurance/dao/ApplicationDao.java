@@ -8,6 +8,7 @@ import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Service;
 
 import com.synergy.insurance.model.Application;
+import com.synergy.insurance.model.Users;
 
 @Service("applicationDao")
 public class ApplicationDao {
@@ -15,6 +16,11 @@ public class ApplicationDao {
 	@Autowired
 	@Qualifier("hibernateTemplate")
 	private HibernateTemplate hibernateTemplate;
+	
+	@Autowired
+	@Qualifier("usersDao")
+	private UsersDao usersDao;
+	
 	
 	public void createApplication(Application app){
 		hibernateTemplate.save(app);
@@ -52,5 +58,18 @@ public class ApplicationDao {
 		application.setStatus(status);
 		hibernateTemplate.saveOrUpdate(application);
 		
+	}
+	
+	public void assignApplicationToEmployee(int id, String email){
+		Users employee  = usersDao.getUsersByEmail(email);
+		Application application = getApplicationByID(id);
+		application.setAssignedEmployee(employee);
+		hibernateTemplate.saveOrUpdate(application);
+	}
+	
+	public List<Application> getApplicationByEmployee(String email){
+		Users employee  = usersDao.getUsersByEmail(email);
+		List<Application> listApplications = (List<Application>) hibernateTemplate.find("from Application where assignedEmployee = ?",employee);
+		return listApplications;
 	}
 }
