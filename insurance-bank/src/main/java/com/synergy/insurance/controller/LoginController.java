@@ -1,7 +1,4 @@
 package com.synergy.insurance.controller;
-
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,20 +10,14 @@ import com.synergy.insurance.dao.UsersDao;
 import com.synergy.insurance.model.Users;
 
 @Controller
-@RequestMapping("/user")
-public class UsersController {
+@RequestMapping("/login")
+public class LoginController {
 	@Autowired
 	private UsersDao usersDao;
 	
 	@ResponseBody
 	@RequestMapping(method=RequestMethod.POST)
-	public void addUser(@RequestBody Users user) {
-		usersDao.addUser(user);
-	}
-	
-	@ResponseBody
-	@RequestMapping(method=RequestMethod.GET,path="/thirdParty")
-	public List<Users> getThirdPartyUsers() {
-		return usersDao.getThirdPartyUsers();
+	public Users validateLogin(@RequestBody Users users) {
+		return usersDao.validateLogin(users);
 	}
 }

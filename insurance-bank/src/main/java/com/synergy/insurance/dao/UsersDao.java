@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.synergy.insurance.model.Users;
 
@@ -30,5 +31,10 @@ public class UsersDao {
 	public List<Users> getThirdPartyUsers() {
 		String query = "from Users where role=?";
 		return (List<Users>) hibernateTemplate.find(query,"third party employee");
+	}
+	
+	@Transactional
+	public void addUser(Users user) {
+		hibernateTemplate.save(user);
 	}
 }
