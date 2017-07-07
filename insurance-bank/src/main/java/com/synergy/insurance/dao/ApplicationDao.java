@@ -67,8 +67,10 @@ public class ApplicationDao {
 	public void assignApplicationToEmployee(int id, String email){
 		System.out.println("assigning application");
 		Users employee  = usersDao.getUsersByEmail(email);
+		Timestamp ts = new Timestamp(System.currentTimeMillis());
 		Application application = getApplicationByID(id);
 		application.setAssignedEmployee(employee);
+		application.setDateAssigned(ts);
 		hibernateTemplate.saveOrUpdate(application);
 	}
 	
