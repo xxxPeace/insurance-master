@@ -41,6 +41,7 @@ public class CustomersController {
 //		return customerDao.getCustomerByEmail(email);
 	}
 	
+	@ResponseBody
 	@RequestMapping(method=RequestMethod.POST)
 	public void addCustomer(@RequestBody Customer customer) {
 		customerDao.addCustomer(customer);
