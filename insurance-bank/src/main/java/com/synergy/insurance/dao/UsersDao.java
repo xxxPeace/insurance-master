@@ -30,7 +30,7 @@ public class UsersDao {
 	
 	public List<Users> getThirdPartyUsers() {
 		String query = "from Users where role=?";
-		return (List<Users>) hibernateTemplate.find(query,"third party employee");
+		return (List<Users>) hibernateTemplate.find(query,"AGENT");
 	}
 	
 	@Transactional
