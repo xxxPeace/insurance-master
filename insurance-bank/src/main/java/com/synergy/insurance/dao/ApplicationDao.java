@@ -1,5 +1,6 @@
 package com.synergy.insurance.dao;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,8 @@ public class ApplicationDao {
 	
 	
 	public void createApplication(Application app){
+		Timestamp ts = new Timestamp(System.currentTimeMillis());
+		app.setDateApplied(ts);
 		hibernateTemplate.save(app);
 	}
 	
@@ -54,6 +57,7 @@ public class ApplicationDao {
 	}
 	
 	public void updateApplicationStatus(int id, String status){
+		System.out.println("updating application");
 		Application application = getApplicationByID(id);
 		application.setStatus(status);
 		hibernateTemplate.saveOrUpdate(application);
@@ -61,6 +65,7 @@ public class ApplicationDao {
 	}
 	
 	public void assignApplicationToEmployee(int id, String email){
+		System.out.println("assigning application");
 		Users employee  = usersDao.getUsersByEmail(email);
 		Application application = getApplicationByID(id);
 		application.setAssignedEmployee(employee);
