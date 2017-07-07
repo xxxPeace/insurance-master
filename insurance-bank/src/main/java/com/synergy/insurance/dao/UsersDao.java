@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.synergy.insurance.model.Users;
 
-@Service
+@Service("usersDao")
 public class UsersDao {
 	@Autowired
 	private HibernateTemplate hibernateTemplate;

@@ -76,6 +76,20 @@ public class CustomerApplicationController {
 		applicationDao.updateApplicationStatus(id, status);
 	}
 	
+	//localhost:8081/insurance-bank/webapi/application/assignEmployee?id=4&email=rockx@qq.com
+	@Transactional
+	@RequestMapping(value = "application/assignEmployee",method=RequestMethod.PUT)
+	@ResponseBody public void assignApplicationToEmployee(@RequestParam("id") int id,  @RequestParam("email") String email) {
+		System.out.println("updateApplicationStatus");	
+		applicationDao.assignApplicationToEmployee(id, email);
+	}
+	
+	//localhost:8081/insurance-bank/webapi/application/getApplicationByEmployee?email=rockx@qq.com
+	@RequestMapping(value = "application/getApplicationByEmployee",method=RequestMethod.GET)
+	@ResponseBody public List<Application> getApplicationByEmployee(@RequestParam("email") String email) {
+		System.out.println("getApplicationByEmployee");	
+		return applicationDao.getApplicationByEmployee(email);
+	}
 	/*@Transactional
 	@RequestMapping(value = "createApplicationOld",method=RequestMethod.POST)
 	@ResponseBody public LoginEntity createCustomer(@RequestBody CustomerApplicationJson cusApp) {
