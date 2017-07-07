@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -28,5 +29,11 @@ public class UsersController {
 	@RequestMapping(method=RequestMethod.GET,path="/thirdParty")
 	public List<Users> getThirdPartyUsers() {
 		return usersDao.getThirdPartyUsers();
+	}
+	
+	@ResponseBody
+	@RequestMapping(method=RequestMethod.GET, path="/email/{email:.+}/")
+	public Users getUserByEmail(@PathVariable String email) {
+		return usersDao.getUserByEmail(email);
 	}
 }

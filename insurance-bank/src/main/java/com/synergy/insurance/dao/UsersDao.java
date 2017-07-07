@@ -37,4 +37,8 @@ public class UsersDao {
 	public void addUser(Users user) {
 		hibernateTemplate.save(user);
 	}
+	
+	public Users getUserByEmail(String email) {
+		return hibernateTemplate.get(Users.class,email);
+	}
 }
