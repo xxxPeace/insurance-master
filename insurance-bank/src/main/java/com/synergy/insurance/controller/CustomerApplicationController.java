@@ -45,30 +45,28 @@ public class CustomerApplicationController {
 		System.out.println("application");
 		return applicationDao.getApplications();	
 	}
+	@Transactional
 	@RequestMapping(value = "application",method=RequestMethod.POST)
-	@ResponseBody public List<Application> updateApplications(@RequestBody Application app) {
-		System.out.println("application");
-		Application application = applicationDao.getApplicationByID(app.getApplicationId());
-		application.setApplicationId(1);
-		System.out.println(application);
+	@ResponseBody public void updateApplications(@RequestBody Application app) {
+		System.out.println("updateApplications");
 		//applicationDao.createApplication(application);	
-		return applicationDao.getApplications();	
+		applicationDao.updateApplication(app);	
 	}
 	
-	//uri :http://localhost:8081/insurance-bank/webapi/application/status?status=pending
+	//uri :http://localhost:8080/insurance-bank/webapi/application/status?status=pending
 	@RequestMapping(value = "application/status",method=RequestMethod.GET)
 	@ResponseBody public List<Application> getApplicationByStatus(@RequestParam("status") String status) {
 		System.out.println("getApplicationByStatus");	
 		return applicationDao.getApplicationByStatus(status);
 	}
-	//uri :http://localhost:8081/insurance-bank/webapi/application/status?email=peace@gmail.com
+	//uri :http://localhost:8080/insurance-bank/webapi/application/status?email=peace@gmail.com
 	@RequestMapping(value = "application/email",method=RequestMethod.GET)
 	@ResponseBody public List<Application> getApplicationByEmail(@RequestParam("email") String email) {
 		System.out.println("getApplicationByStatus");	
 		return applicationDao.getApplicationByEmail(email);
 	}
 	
-	//localhost:8081/insurance-bank/webapi/application/status?id=4&status=pending
+	//localhost:8080/insurance-bank/webapi/application/status?id=4&status=pending
 	@Transactional
 	@RequestMapping(value = "application/status",method=RequestMethod.PUT)
 	@ResponseBody public void updateApplicationStatus(@RequestParam("id") int id, @RequestParam("status") String status) {
@@ -76,7 +74,7 @@ public class CustomerApplicationController {
 		applicationDao.updateApplicationStatus(id, status);
 	}
 	
-	//localhost:8081/insurance-bank/webapi/application/assignEmployee?id=4&email=rockx@qq.com
+	//localhost:8080/insurance-bank/webapi/application/assignEmployee?id=4&email=rockx@qq.com
 	@Transactional
 	@RequestMapping(value = "application/assignEmployee",method=RequestMethod.PUT)
 	@ResponseBody public void assignApplicationToEmployee(@RequestParam("id") int id,  @RequestParam("email") String email) {
@@ -84,51 +82,13 @@ public class CustomerApplicationController {
 		applicationDao.assignApplicationToEmployee(id, email);
 	}
 	
-	//localhost:8081/insurance-bank/webapi/application/getApplicationByEmployee?email=rockx@qq.com
+	//localhost:8080/insurance-bank/webapi/application/getApplicationByEmployee?email=rockx@qq.com
 	@RequestMapping(value = "application/getApplicationByEmployee",method=RequestMethod.GET)
 	@ResponseBody public List<Application> getApplicationByEmployee(@RequestParam("email") String email) {
 		System.out.println("getApplicationByEmployee");	
 		return applicationDao.getApplicationByEmployee(email);
 	}
-	/*@Transactional
-	@RequestMapping(value = "createApplicationOld",method=RequestMethod.POST)
-	@ResponseBody public LoginEntity createCustomer(@RequestBody CustomerApplicationJson cusApp) {
-		System.out.println("createCustomer");
-		String password = PasswordBuilder.passwordBuilder();
-		System.out.println("Password :" + password);
-		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		String encoderPassword =encoder.encode( password);
-		LoginEntity user = new LoginEntity();
-		user.setEmail(cusApp.getEmail());	
-		user.setPassword(encoderPassword);
-		user.setEnabled(true);
-		
-		CustomerEntity customerEntity = new CustomerEntity();
-		customerEntity.setName(cusApp.getName());
-		customerEntity.setMobile(cusApp.getMobile());
-		customerEntity.setAddress(cusApp.getAddress());
-		customerEntity.setSsn(cusApp.getSsn());
-		customerEntity.setDob(cusApp.getDob());
-		customerEntity.setOccupation(cusApp.getOccupation());
-		customerEntity.setSalary(cusApp.getSalary());
-		customerEntity.setEducation(cusApp.getEducation());
-		
-		CustomerApplicationEntity customerApplicationEntity = new CustomerApplicationEntity();
-		customerApplicationEntity.setName(cusApp.getName());
-		customerApplicationEntity.setMobile(cusApp.getMobile());
-		customerApplicationEntity.setAddress(cusApp.getAddress());
-		customerApplicationEntity.setSsn(cusApp.getSsn());
-		customerApplicationEntity.setDob(cusApp.getDob());
-		customerApplicationEntity.setOccupation(cusApp.getOccupation());
-		customerApplicationEntity.setSalary(cusApp.getSalary());
-		customerApplicationEntity.setEducation(cusApp.getEducation());
-		
-		//customer.setUser(user1);
-		//loginDao.createManager(user1);
-		loginDao.createCustomerAplication(user, customerApplicationEntity);
-		//loginDao.createThirdPraty(user1);
-		return user;
-	}*/
+	
 	
 	
 }
