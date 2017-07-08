@@ -30,7 +30,22 @@ public class ApplicationDao {
 	}
 	
 	public void updateApplication(Application app){
-
+		Application application = getApplicationByID(app.getApplicationId());
+		application.setStatus(app.getStatus());
+		application.setName(app.getName());
+		application.setEmail(app.getEmail());
+		application.setMobile(app.getMobile());
+		application.setAddress(app.getAddress());
+		application.setSsn(app.getSsn());
+		application.setDob(app.getDob());
+		application.setOccupation(app.getOccupation());
+		application.setSalary(app.getSalary());
+		application.setEducation(app.getEducation());
+		application.setAssignedEmployee(app.getAssignedEmployee());
+		application.setDateAssigned(app.getDateAssigned());
+		application.setFieldsFilledIn(app.getFieldsFilledIn());
+		application.setPolicy(app.getPolicy());
+		hibernateTemplate.saveOrUpdate(application);
 	}
 	public List<Application> getApplications(){
 		List<Application> listApplications= (List<Application>) hibernateTemplate.find("from Application");		
