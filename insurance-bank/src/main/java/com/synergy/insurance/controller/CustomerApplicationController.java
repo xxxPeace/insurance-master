@@ -49,7 +49,6 @@ public class CustomerApplicationController {
 	@RequestMapping(value = "application",method=RequestMethod.POST)
 	@ResponseBody public void updateApplications(@RequestBody Application app) {
 		System.out.println("updateApplications");
-		//applicationDao.createApplication(application);	
 		applicationDao.updateApplication(app);	
 	}
 	
