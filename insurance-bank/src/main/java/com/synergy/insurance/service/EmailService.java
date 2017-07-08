@@ -17,7 +17,8 @@ public class EmailService {
 	public void sendEmail(int applicationId, String toEmail) {
 		final String fromEmail = "wong.kar.eric@gmail.com";
 		final String password = "tempPassword";
-		String uri = "http://localhost:8080/insurance-bank/webapi/fileUpload?applicationId=" + applicationId;
+		//String uri = "http://localhost:8080/insurance-bank/webapi/fileUpload?applicationId=" + applicationId;
+		String uri = "http://localhost:8080/Insurance2/fileUploadPage?id=" + applicationId;
 		String messageBody = "Please visit the following link and upload the necessary documents: " + uri;
 		
 		Properties properties = new Properties();
